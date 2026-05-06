@@ -209,38 +209,61 @@ Stdio mode (default):
 }
 ```
 
-HTTP mode:
+Connect to standalone server over Streamable HTTP (recommended):
 
 ```json
 {
   "mcp": {
     "servers": {
-      "nitter-http": {
-        "command": "node",
-        "args": ["/absolute/path/to/nitter-mcp/dist/index.js"],
-        "env": {
-          "MCP_TRANSPORT": "http",
-          "MCP_HOST": "127.0.0.1",
-          "MCP_PORT": "3000",
-          "MCP_HTTP_PATH": "/mcp",
-          "MCP_ENABLE_SSE_COMPAT": "true",
-          "NITTER_BASE_URL": "https://nitter.net"
-        }
+      "nitter-remote": {
+        "url": "http://127.0.0.1:3000/mcp"
       }
     }
   }
 }
 ```
 
-## Standalone HTTP endpoint example
+Connect to standalone server over deprecated HTTP+SSE compatibility:
 
-Run as an HTTP server:
+```json
+{
+  "mcp": {
+    "servers": {
+      "nitter-remote-sse": {
+        "transport": "sse",
+        "url": "http://127.0.0.1:3000/sse"
+      }
+    }
+  }
+}
+```
+
+## Run standalone MCP server
+
+Run `nitter-mcp` as a standalone HTTP MCP server:
 
 ```bash
 MCP_TRANSPORT=http MCP_HOST=127.0.0.1 MCP_PORT=3000 yarn start
 ```
 
-Then connect clients to:
+You can also use the script shortcut:
+
+```bash
+yarn start:http
+```
+
+Common runtime env vars:
+
+- `MCP_TRANSPORT=http`
+- `MCP_HOST` (default `127.0.0.1`)
+- `MCP_PORT` (default `3000`)
+- `MCP_HTTP_PATH` (default `/mcp`)
+- `MCP_ENABLE_SSE_COMPAT` (default `true`)
+- `MCP_SSE_PATH` (default `/sse`)
+- `MCP_SSE_MESSAGES_PATH` (default `/messages`)
+- `NITTER_BASE_URL` (default `https://nitter.net`)
+
+When running, clients can connect to:
 
 - Streamable HTTP: `http://127.0.0.1:3000/mcp`
 - Deprecated SSE stream: `http://127.0.0.1:3000/sse`
