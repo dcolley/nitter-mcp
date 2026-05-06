@@ -191,6 +191,8 @@ Optional env vars for regression:
 
 ## MCP config example (Cursor/VS Code)
 
+Stdio mode (default):
+
 ```json
 {
   "mcp": {
@@ -199,6 +201,29 @@ Optional env vars for regression:
         "command": "node",
         "args": ["/absolute/path/to/nitter-mcp/dist/index.js"],
         "env": {
+          "NITTER_BASE_URL": "https://nitter.net"
+        }
+      }
+    }
+  }
+}
+```
+
+HTTP mode:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "nitter-http": {
+        "command": "node",
+        "args": ["/absolute/path/to/nitter-mcp/dist/index.js"],
+        "env": {
+          "MCP_TRANSPORT": "http",
+          "MCP_HOST": "127.0.0.1",
+          "MCP_PORT": "3000",
+          "MCP_HTTP_PATH": "/mcp",
+          "MCP_ENABLE_SSE_COMPAT": "true",
           "NITTER_BASE_URL": "https://nitter.net"
         }
       }
