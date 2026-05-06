@@ -1,0 +1,58 @@
+{
+  "name": "nitter-mcp",
+  "version": "0.1.0",
+  "description": "MCP server exposing Nitter tweet and user search tools",
+  "type": "module",
+  "private": false,
+  "author": "dcolley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcolley/nitter-mcp.git"
+  },
+  "homepage": "https://github.com/dcolley/nitter-mcp",
+  "bugs": {
+    "url": "https://github.com/dcolley/nitter-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "nitter",
+    "twitter",
+    "rss"
+  ],
+  "bin": {
+    "nitter-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "dev": "tsx src/index.ts",
+    "dev:http": "MCP_TRANSPORT=http tsx src/index.ts",
+    "prepack": "yarn build",
+    "start": "node dist/index.js",
+    "start:http": "MCP_TRANSPORT=http node dist/index.js",
+    "regression": "yarn build && tsx scripts/stdio-regression.ts",
+    "regression:http": "yarn build && tsx scripts/http-regression.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.5",
+    "cheerio": "^1.1.2",
+    "fast-xml-parser": "^5.3.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
