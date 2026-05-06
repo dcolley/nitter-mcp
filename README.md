@@ -273,9 +273,3 @@ You can add more vars in this `env` block.
 `nitter-mcp` consumes `NITTER_BASE_URL` plus `MCP_*` transport/runtime variables described above.  
 `NITTER_TEST_QUERY` and `NITTER_TEST_USERNAME` are for regression scripts, not normal MCP server runtime.
 
-## Publishing checklist (public GitHub repo)
-
-- ensure `README.md`, `LICENSE`, and `package.json` metadata are up to date
-- commit only source + lockfile (exclude `node_modules` and build output)
-- run `yarn build` and `yarn regression` before pushing
-- create the repository at [github.com/dcolley](https://github.com/dcolley) and push
